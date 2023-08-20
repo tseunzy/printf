@@ -1,67 +1,61 @@
 #include "main.h"
+
+void print_buffer(char buffer[], int *buff_ind);
+
 /**
- * _printf - program on _printf function
- * @format: format
- * Return: No of printed chars;
+ * _printf - Printf function
+ * @format: format.
+ * Return: Printed chars.
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
+    va_list args;
 
-	va_start(args, format);
+    va_start(args, format);
+    int count = 0, buff_ind = 0;
+    char buffer[BUFF_SIZE];
 
-	int i, count = 0;
-	char specifier, c, *str, *str_r;
-	int str_len;
+    if (format == NULL)
+        return (-1);
 
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			format++;
-			specifier = *format;
-			switch (specifier)
-			{
-				case 'c':
-					c = (char) va_arg(args, int);
-					putchar(c);
-					count++;
-					break;
+    for (int i = 0; format && format[i]; i++)
+    {
+        if (format[i] == '%')
+        {
+            print_buffer(buffer, &buff_ind);
+            int flags = get_flags(format, &i);
+            int width = get_width(format, &i, args);
+            int precision = get_precision(format, &i, args);
+            int size = get_size(format, &i);
+            int printed = handle_print(format, &i, args, buffer,
+                                       flags, width, precision, size);
+            if (printed == -1)
+                return -1;
+            count += printed;
+        }
+        else
+        {
+            buffer[buff_ind++] = format[i];
+            if (buff_ind == BUFF_SIZE)
+                print_buffer(buffer, &buff_ind);
+            else
+                count++;
+        }
+    }
+    print_buffer(buffer, &buff_ind);
+    va_end(args);
+    return count;
+}
 
-				case 's':
-					*str = va_arg(args, char *);
-					fputs(str, stdout);
-					count += strlen(str);
-					break;
+/**
+ * print_buffer - Prints the contents of the buffer if it exists
+ * @buffer: Array of chars
+ * @buff_ind: Index at which to add the next char, represents the length.
+ */
+void print_buffer(char buffer[], int *buff_ind)
+{
+    if (*buff_ind > 0)
+        write(1, buffer, *buff_ind);
 
-				case '%':
-					putchar('%');
-					count++;
-					break;
-
-				case 'r':
-					*str_r = va_arg(args, char *);
-					str_len = strlen(str_r);
-					for (i = str_len - 1; i >= 0; i--)
-					{
-						putchar(str_r[i]);
-						count++;
-					}
-					break;
-
-				default:
-					putchar('%');
-					putchar(specifier);
-					count += 2;
-			}
-		}
-		else
-		{
-			putchar(*format);
-			count++;
-		}
-		format++;
-	}
-	va_end(args);
-	return (count);
+    *buff_ind = 0;
 }
