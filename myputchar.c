@@ -1,25 +1,12 @@
 #include "main.h"
-
 /**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
  *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-
-int myputchar(int x, int count)
+int _putchar(char c)
 {
-        int c1 = x;
-
-        if (x < 0)
-        {
-                c1 = -x;
-                putchar('-');
-                count = count + 1;
-        }
-        if (c1 / 10)
-        {
-                count = myputchar(c1 / 10, count);
-        }
-
-        putchar(c1 % 10 + '0');
-
-        return (count + 1);
+	return (write(1, &c, 1));
 }

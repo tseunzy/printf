@@ -8,7 +8,7 @@ int _char(va_list args)
 { /* handlers of 'c'*/
         char vim = va_arg(args, int);
 
-        putchar(vim);
+        _putchar(vim);
         return (1);
 }
 
@@ -23,11 +23,23 @@ int _string(va_list args)
 
         while (*vim != '\0')
         {
-                putchar(*vim);
+                _putchar(*vim);
                 vim++;
                 num++;
         }
         return (num);
+}
+
+/**
+ *
+ */
+int _decimal(va_list arg)
+{
+	int num = 0;
+	int vim = va_arg(arg, int);
+
+	num = _putchar(vim, 0);
+	return (num);
 }
 /**
  *
@@ -35,8 +47,8 @@ int _string(va_list args)
 
 int _percent(va_list args)
 {
-        char symbol = (char) va_arg(args, int);
+        char symbol = va_arg(args, int);
 
-        putchar(symbol);
+        _putchar(symbol);
         return (symbol);
 }

@@ -13,8 +13,13 @@ int (*picker(char ch))(va_list)
         {
                 return (&_char);
         }
+	else if (ch == 'd')
+	{
+		return (&_decimal);
+	}
         else if (ch == '%')
         {
                 return (&_percent);
         }
+	return (0);
 }

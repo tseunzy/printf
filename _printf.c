@@ -9,10 +9,10 @@ int _printf(const char *format, ...)
         int count = 0;
         char specifier;
 
-        va_list noargs;
+        va_list args;
         int i = 0;
 
-        va_start(noargs, format);
+        va_start(args, format);
 
         if (format[0] == '\0')
                 return (-1);
@@ -22,12 +22,12 @@ int _printf(const char *format, ...)
                 if (format[i] == '%')
                 {
                         specifier = format[i + 1];
-                        count = count + (*picker(specifier))(noargs);
+                        count = count + (*picker(specifier))(args);
                         i++;
                 }
                 else
                 {
-                        putchar(format[i]);
+                        _putchar(format[i]);
                         count = count + 1;
                 }
                 i++;
