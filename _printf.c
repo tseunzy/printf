@@ -59,9 +59,9 @@ int _printf(const char *format, ...)
  */
 void print_buffer(char buffa[], int *buff_inid)
 {
-	
-	int chars_to_write = (*buff_inid >0) ?  *buff_inid : 0;
+	int chars_to_write = (*buff_inid > 0) ?  *buff_inid : 0;
+
 	write(1, buffa, chars_to_write);
+
 	*buff_inid = 0;
 }
-
