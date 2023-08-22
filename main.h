@@ -19,28 +19,28 @@
 #define S_SHORT 1
 
 /**
- * struct fmt - Struct op
+ * struct frmt - Struct op
  *
  * @fmt: The format.
  * @fn: The function associated.
  */
-struct fmt
+struct frmt
 {
-	char fmt;
+	char frmt;
 	int (*fn)(va_list, char[], int, int, int, int);
 };
 
 /**
- * typedef struct fmt fmt_t - Struct op
+ * typedef struct frmt frmt_t - Struct op
  *
- * @fmt: The format.
- * @fm_t: The function associated.
+ * @frmt: The format.
+ * @frm_t: The function associated.
  */
-typedef struct fmt fmt_t;
+typedef struct frmt frmt_t;
 
 int _printf(const char *format, ...);
-int handle_print(const char *fmt, int *i,
-va_list list, char buffer[], int flags,
+int handle_print(const char *frmt, int *i,
+va_list args, char buffer[], int flags,
 int width, int precision, int size);
 void print_buffer(char buffer[], int *buff_inid);
 
@@ -99,7 +99,7 @@ int get_size(const char *format, int *k);
 /* width handler */
 int handlewritechar(char ch, char buffer[],
 	int flags, int width, int precision, int size);
-int writenumber(int is_negative, int ind, char buffer[],
+int writenumber(int is_positive, int ind, char buffer[],
 	int flags, int width, int precision, int size);
 int write_num(int ind, char bff[], int flags, int width, int precision,
 	int length, char padd, char extra_c);
