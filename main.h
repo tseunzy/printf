@@ -99,7 +99,7 @@ int get_size(const char *format, int *k);
 /* width handler */
 int handlewritechar(char ch, char buffer[],
 	int flags, int width, int precision, int size);
-int writenumber(int is_positive, int ind, char buffer[],
+int writenumber(int is_negative, int ind, char buffer[],
 	int flags, int width, int precision, int size);
 int write_num(int ind, char bff[], int flags, int width, int precision,
 	int length, char padd, char extra_c);

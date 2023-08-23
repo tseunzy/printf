@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * _printf - Printf function
+ * _printf - Outputs formatted text
  * @format: format.
- * Return: Printed chars.
+ * Return: Nunmber of char otput
  */
 int _printf(const char *format, ...)
 {
@@ -48,9 +48,9 @@ int _printf(const char *format, ...)
 }
 
 /**
- * print_buffer - Prints the contents of the buffer if it exist
- * @buffer: Array of chars
- * @buff_inid: Index at which to add next char, represents the length.
+ * print_buffer - Outputs the buffer's content if present
+ * @buffer: sequence of characters
+ * @buff_inid: Position to append the next char, current size.
  */
 void print_buffer(char buffer[], int *buff_inid)
 {
