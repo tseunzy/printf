@@ -42,17 +42,14 @@ int _printf(const char *format, ...)
 			fprinted_chars += pfrinted;
 		}
 	}
-
 	print_buffer(buffer, &buff_inid);
-
 	va_end(list);
-
 	return (fprinted_chars);
 }
 
 /**
  * print_buffer - Prints the contents of the buffer if it exist
- * @buffa: Array of chars
+ * @buffer: Array of chars
  * @buff_inid: Index at which to add next char, represents the length.
  */
 void print_buffer(char buffer[], int *buff_inid)
